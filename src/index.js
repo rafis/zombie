@@ -120,7 +120,7 @@ class Browser extends EventEmitter {
     // Switching tabs/windows fires blur/focus event on active window/element
     this
       .on('active', (window)=> {
-        // Window becomes inactive
+        // Window becomes active
         const winFocus = window.document.createEvent('HTMLEvents');
         winFocus.initEvent('focus', false, false);
         window.dispatchEvent(winFocus);
