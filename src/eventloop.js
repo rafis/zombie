@@ -236,12 +236,14 @@ class EventQueue {
       .then((response)=> {
         // We can't cancel pending requests, but we can ignore the response if
         // window already closed
-        if (this.queue)
-          // This will get completion function to execute, e.g. to check a page
-          // before meta tag refresh
-          this.enqueue(()=> {
-            callback(null, response);
-          });
+        if ( ! this.queue) {
+          return;
+        }
+        // This will get completion function to execute, e.g. to check a page
+        // before meta tag refresh
+        this.enqueue(()=> {
+          callback(null, response);
+        });
       })
       .catch((error)=> {
         if (this.queue)
