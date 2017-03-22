@@ -581,7 +581,10 @@ function buildRequest(args) {
       })
       .join('&');
 
-    headers.set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
+    // We should not include Content-Type if body is empty
+    if (urlEncoded) {
+      headers.set('Content-Type', mimeType || 'application/x-www-form-urlencoded;charset=UTF-8');
+    }
     return new Fetch.Request(url, { method, headers, body: urlEncoded });
   }
 
