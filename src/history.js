@@ -267,7 +267,7 @@ class History {
 
   // Call with two argument to update window.location and current.url to new URL
   updateLocation(window, url) {
-    if (window === this.current)
+    if (window === this.current.window)
       this.current.url = url;
     window.document._URL       = url;
     window.document._location  = new Location(this, url);
